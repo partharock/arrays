@@ -1,0 +1,11 @@
+    void rotate(int arr[], int n)
+{
+    if(n<=1)return;
+    int temp=arr[n-1];
+    int sub=arr[0];
+    for(int i=1;i<n;i++)
+     swap(arr[i],sub);
+
+    arr[0]=temp;
+    
+}
