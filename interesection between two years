@@ -1,0 +1,18 @@
+int NumberofElementsInIntersection(int a[], int b[], int n, int m) {
+    unordered_map<int,bool> umap;
+    int count=0;
+    for(int i=0;i<n;i++){
+        umap[a[i]]=1;
+    }
+    for(int j=0;j<m;j++)
+    {
+        if(count==n or count==m)
+        return count;
+        
+         if(umap[b[j]]==1 ){
+             umap[b[j]]=0;
+             count++;
+         }
+    }
+    return count;
+    }
