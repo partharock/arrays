@@ -1,0 +1,63 @@
+ 
+ method 1
+ int minJumps(int arr[], int n){
+        // Your code here
+        if(n<=1) return 0;
+        
+        if(arr[0]==0)return -1;
+        
+        int power=arr[0];
+        int maxpower=0;
+        int jump=1;
+        for(int i=1;i<n;i++){
+            
+            if(i==n-1) return jump;
+            
+            if(power>=(n-i) )return jump;
+            
+            if(arr[i]>0)
+            maxpower=max(maxpower,i+arr[i]);
+            
+            power--;
+            
+            if(power==0)
+            {
+                jump++;
+                power=maxpower-i;
+                
+                if(power<=0)
+                return -1;
+            }
+        }
+        
+    }
+    
+    method 2
+    int minJumps(int arr[], int n){
+        // Your code here
+        int steps=0;
+        int start=0;
+       while(start<n-1)
+        {
+            int maxer=arr[start];
+            steps++;
+            if(start+maxer>=n-1)
+            break;
+            
+            int index;
+            int transfer=0;
+            for(int j=start+1;j<=start+maxer;j++){
+                
+                if(arr[j] + j >transfer){
+                    transfer=arr[j]+j;
+                    index=j;
+                }
+            }
+            if(transfer==0)
+            return -1;
+            
+            start=index;
+        }
+        return steps;
+    }
+    
