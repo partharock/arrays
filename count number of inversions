@@ -1,0 +1,32 @@
+void findcount(long long arr[],long long start,long long end,long long &count){
+        if(start<end)
+        {
+            long long mid=start+(end-start)/2;
+            findcount(arr,start,mid,count);
+            findcount(arr,mid+1,end,count);
+            long long temp1=start, temp2=mid+1;
+            while(temp1<=mid and temp2<=end)
+            {
+                if(arr[temp1]<=arr[temp2])
+                {
+                    temp1++;
+                }
+                else
+                {
+                    while(temp2<=end and arr[temp1]>arr[temp2]  )
+                    temp2++;
+                    
+                    count+=(temp2-mid-1);
+                    temp1++;
+                    temp2--;
+                }
+            }
+            sort(arr+start,arr+end+1);
+        }
+    }
+    long long int inversionCount(long long arr[], long long N)
+    {
+        long long count=0,start=0,end=N-1;
+        findcount(arr,start,end,count);
+        return count;
+    }
