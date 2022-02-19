@@ -1,0 +1,40 @@
+best approach no stl used just simple vector int
+vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
+        {
+            int start1=0,start2=0,start3=0;
+            vector<int> ans;
+            
+            while(start1<n1 and start2<n2 and start3<n3)
+            {
+                if(A[start1]>B[start2])
+                start2++;
+                else if(A[start1]<B[start2])
+                start1++;
+                
+                if(B[start2]>C[start3])
+                start3++;
+                else if(B[start2]<C[start3])
+                start2++;
+                
+                
+                if(A[start1]==B[start2] and B[start2]==C[start3])
+                {
+                    ans.push_back(A[start1]);
+                    start1++;
+                    start2++;
+                    start3++;
+                }
+                
+                while(start1<n1 and A[start1]==A[start1-1])
+                start1++;
+                
+                while(start2<n2 and B[start2]==B[start2-1])
+                start2++;
+                
+                while(start3<n3 and C[start3]==C[start3-1])
+                start3++;
+                
+            }
+            return ans;
+            //code here.
+        }
