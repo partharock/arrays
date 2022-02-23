@@ -1,0 +1,48 @@
+using max min method
+long long maxProduct(vector<int> arr, int n) {
+	    // code here
+	    long long sum=1; long long ans=arr[0];
+	    long long maxer=arr[0]; long long miner=arr[0];
+	   // cout<<count<<endl;
+	    for(int i=1;i<n;i++)
+	    {
+	        if(arr[i]<0)
+	        swap(maxer,miner);
+	        
+	      (arr[i]*maxer>arr[i])?maxer=arr[i]*maxer:maxer=arr[i];
+	      (arr[i]*miner<arr[i])?miner=arr[i]*miner:miner=arr[i];
+	      if(arr[i]==0)
+	      maxer=miner=1;
+	      if(maxer>ans)
+	      ans=maxer;
+	    }
+	    return ans;
+	}
+  
+  long long maxProduct(vector<int> arr, int n) {
+	    // code here
+	    long long sum=1; long long ans=arr[0];
+	    long long maxer=arr[0]; long long miner=arr[n-1];
+	   // cout<<count<<endl;
+	    for(int i=0;i<n;i++)
+	    {
+	        if(i!=0)
+	        maxer*=arr[i];
+	        if(i!=0)
+	        miner*=arr[n-1-i];
+	        
+	        if(maxer>ans)
+	        ans=maxer;
+	        
+	        if(miner>ans)
+	        ans=miner;
+	        
+	        if(maxer==0)
+	        maxer=1;
+	        
+	        if(miner==0)
+	        miner=1;
+	        
+	    }
+	    return ans;
+	}
