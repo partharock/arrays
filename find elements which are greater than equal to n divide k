@@ -1,0 +1,27 @@
+vector<int> countTheNumber(vector<int> &arr, int n, int k) {
+	// Write your code here.
+    vector<int> ans;
+    unordered_map<int,int> umap;
+    int x=n/k;
+    for(int i=0;i<n;i++)
+    {
+         if(umap.size()==(k) and umap[arr[i]]==0 )
+         {
+             for(auto &it:umap)
+             {
+                 it.second--;
+                 if(it.second==0)
+                   umap.erase(it.first);
+             }
+         }
+         else
+        umap[arr[i]]++;
+    }
+    
+    for(auto &it:umap)
+    {
+        if(it.second>=x)
+        ans.emplace_back(it.first);
+    }
+    return ans;
+}
