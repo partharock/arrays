@@ -1,0 +1,28 @@
+o 2n time and on space using unordered map
+ int findLongestConseqSubseq(int arr[], int N)
+    {
+        unordered_map<int,int> umap;
+        int ans=1;
+        int maxer=arr[0];
+        for(int i=0;i<N;i++)
+        {
+            umap[arr[i]]=1;
+            if(arr[i]>maxer)
+            maxer=arr[i];
+        }
+        while(maxer>0 or umap[maxer])
+        {
+            int count=0;
+           while(umap[maxer])
+           {  count++;
+              maxer-=1; 
+           }
+           
+           maxer-=1;
+           
+           if(count>ans)
+           ans=count;
+        }
+        return ans;
+      //Your code here
+    }
