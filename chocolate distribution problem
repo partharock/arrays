@@ -1,0 +1,46 @@
+time onlogn and space o1
+void merge(vector<long long > &a, long long left, long long mid, long long right, long long n)
+    {
+        long long start1=left,start2=mid+1;
+        vector< long long > temp(right-left+1);
+        long long start =0;
+        while(start1<=mid and start2<=right)
+        {
+            if(a[start1]<=a[start2])
+             temp[start++]=a[start1++];
+            else
+                temp[start++]=a[start2++];
+        }
+        while(start1<=mid){
+            temp[start++]=a[start1++];
+        }
+        while(start2<=right){
+           temp[start++]=a[start2++]; 
+        }
+ 
+        long long stub=left; long long k=0;
+        while(k<temp.size()){
+             a[stub++]=temp[k++];
+        }
+    }
+    void mergesort(vector<long long > &a ,long long left, long long right, long long n)
+    {
+        if(left<right)
+        {
+            int mid=left + (right-left)/2;
+            mergesort(a,left,mid,n);
+            mergesort(a,mid+1,right,n);
+            merge(a,left,mid,right,n);
+        }
+    }
+    long long findMinDiff(vector<long long> a, long long n, long long m){
+    mergesort(a,0,n-1,n);
+    long long count=INT_MAX;
+    for(long long i=0;i<n;i++)
+    {
+        if(i+m-1 >= n ) break;
+        count=min(count,a[i+m-1]-a[i]);
+    }
+    return count;
+    
+    }   
