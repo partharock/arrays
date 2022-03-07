@@ -1,0 +1,25 @@
+on time and o1 space
+int findMinOps(int arr[], int n)
+{ int mergeoperations=0;
+  int start=0,end=n-1;
+  while(start<end){
+    if(arr[start]==arr[end])
+    {
+     start++; end--;
+    }
+    else if(arr[start]>arr[end])
+    {
+     end--;
+      arr[end]+=arr[end+1];
+      mergeoperations++;
+    }
+    else if(arr[start]<arr[end])
+    {
+     start++;
+      arr[start]+=arr[start-1];
+      mergeoperations++;
+    }
+    
+  }
+  return mergeoperations;
+}
